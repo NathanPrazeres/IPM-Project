@@ -195,6 +195,26 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
   // for the number of targets minus one
   h_margin = horizontal_gap / (GRID_COLUMNS -1);
   v_margin = vertical_gap / (GRID_ROWS - 1);
+
+  // Sort the table by name
+  for (var r = 0; r < legendas.getRowCount(); r++)
+  {
+    for (var c = 0; c < legendas.getRowCount(); c++)
+    {
+      if (legendas.getString(r, 0) < legendas.getString(c, 0))
+      {
+        let temp = legendas.getString(r, 0);
+        legendas.setString(r, 0, legendas.getString(c, 0));
+        legendas.setString(c, 0, temp);
+
+        // Não troca a ordem dos IDs para não afetar a ordem dos targets
+
+        temp = legendas.getString(r, 2);
+        legendas.setString(r, 2, legendas.getString(c, 2));
+        legendas.setString(c, 2, temp);
+      }
+    }
+  }
   
   // Set targets in a 8 x 10 grid
   for (var r = 0; r < GRID_ROWS; r++)
@@ -207,7 +227,9 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       // Find the appropriate label and ID for this target
       let legendas_index = c + GRID_COLUMNS * r;
       let target_label = legendas.getString(legendas_index, 0);
-      let target_id = legendas.getNum(legendas_index, 1);     
+      let target_id = legendas.getNum(legendas_index, 1);   
+      
+      // console.log("https://www.google.com/search?q="+ target_label.replace(/\s/g, '+') + '+' + legendas.getString(legendas_index, 2).replace(/\s/g, '+') +"&tbm=isch");
       
       let target = new Target(target_x, target_y + 40, target_size, target_label, target_id);
       targets.push(target);
