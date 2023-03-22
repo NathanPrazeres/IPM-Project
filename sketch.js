@@ -7,7 +7,7 @@
 
 // Database (CHANGE THESE!)
 const GROUP_NUMBER        = 0;      // Add your group number here as an integer (e.g., 2, 3)
-const RECORD_TO_FIREBASE  = false;  // Set to 'true' to record user results to Firebase
+const RECORD_TO_FIREBASE  = true;  // Set to 'true' to record user results to Firebase
 
 // Pixel density and setup variables (DO NOT CHANGE!)
 let PPI, PPCM;
@@ -43,7 +43,6 @@ function setup()
 {
   createCanvas(700, 500);    // window size in px before we go into fullScreen()
   frameRate(60);             // frame rate (DO NOT CHANGE!)
-  
   randomizeTrials();         // randomize the trial order at the start of execution
   drawUserIDScreen();        // draws the user start-up screen (student ID and display size)
 }
@@ -62,8 +61,32 @@ function draw()
     textAlign(LEFT);
     text("Trial " + (current_trial + 1) + " of " + trials.length, 50, 20);
         
+    let change = 0;
+    let curr_letter = 'a';
+    let first = true;
+
     // Draw all targets
-	for (var i = 0; i < legendas.getRowCount(); i++) targets[i].draw();
+	  for (var i = 0; i < legendas.getRowCount(); i++) {
+      if (curr_letter != targets[i].getLabel()[0]) {
+        curr_letter = targets[i].getLabel()[0];
+        change++;
+        first = true;
+      }
+
+      let bg_color;
+      if (change%4 == 0) {
+        bg_color = color(0, 100, 0);
+      } else if (change%4 == 1) {
+        bg_color = color(150, 0, 0);
+      } else if (change%4 == 2) {
+        bg_color = color(0, 50, 100);
+      } else {
+        bg_color = color(100, 100, 0);
+      }
+
+      targets[i].draw(bg_color, first);
+      first = false;
+    }
     
     // Draw the target label to be selected in the current trial
     textFont("Arial", 20);
@@ -196,7 +219,6 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
   h_margin = horizontal_gap / (GRID_COLUMNS -1);
   v_margin = vertical_gap / (GRID_ROWS - 1);
 
-  // Sort the table by name
   for (var r = 0; r < legendas.getRowCount(); r++)
   {
     for (var c = 0; c < legendas.getRowCount(); c++)

@@ -19,10 +19,10 @@ class Target
   
   // Draws the target (i.e., a circle)
   // and its label
-  draw()
+  draw(bg_color, first)
   {
     // Draw target
-    fill(color(155,155,155));                 
+    fill(bg_color);                 
     circle(this.x, this.y, this.width);
     
     // Draw label
@@ -30,5 +30,17 @@ class Target
     fill(color(255,255,255));
     textAlign(CENTER);
     text(this.label, this.x, this.y);
+    if (first)
+    {
+      textFont("Arial", 20, BOLD);
+      fill(color(255, 255, 0));
+      textAlign(CENTER);
+      text(this.label[0], this.x, this.y - 25);
+    }
+  }
+
+  getLabel()
+  {
+    return this.label;
   }
 }
