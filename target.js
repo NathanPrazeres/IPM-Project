@@ -26,7 +26,7 @@ class Target
     circle(this.x, this.y, this.width);
     
     // Draw label
-    textFont("Arial", 12);
+    textFont("Arial", 16);
     fill(color(255,255,255));
     textAlign(CENTER);
     text(this.label, this.x, this.y);
@@ -35,9 +35,9 @@ class Target
       textFont("Arial", 36);
       fill(color(0, 255, 0));
       textAlign(CENTER);
-      text(this.label[0], this.x-60, this.y - (-10));
+      text(this.label[0], this.x-60, this.y + 8);
     }
-    textFont("Arial", 12);
+    textFont("Arial", 16);
     fill(color(255, 255, 255));
   }
 
