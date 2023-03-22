@@ -32,10 +32,10 @@ class Target
     text(this.label, this.x, this.y);
     if (first)
     {
-      textFont("Arial", 20, BOLD);
-      fill(color(255, 255, 0));
+      textFont("Arial", 36);
+      fill(color(0, 255, 0));
       textAlign(CENTER);
-      text(this.label[0], this.x, this.y - 20);
+      text(this.label[0], this.x-60, this.y - (-10));
     }
     textFont("Arial", 12);
     fill(color(255, 255, 255));
