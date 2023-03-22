@@ -74,14 +74,18 @@ function draw()
       }
 
       let bg_color;
-      if (change%4 == 0) {
-        bg_color = color(0, 100, 0);
-      } else if (change%4 == 1) {
-        bg_color = color(150, 0, 0);
-      } else if (change%4 == 2) {
+      if (change%6 == 0) {
+        bg_color = color(0, 75, 0);
+      } else if (change%6 == 1) {
+        bg_color = color(128, 0, 0);
+      } else if (change%6 == 2) {
         bg_color = color(0, 50, 100);
-      } else {
-        bg_color = color(100, 100, 0);
+      } else if (change%6 == 3) {
+        bg_color = color(128, 100, 0);
+      } else if (change%6 == 4) {
+        bg_color = color(100, 0, 100);
+      } else if (change%6 == 5) {
+        bg_color = color(0, 100, 100);
       }
 
       targets[i].draw(bg_color, first);
@@ -219,21 +223,21 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
   h_margin = horizontal_gap / (GRID_COLUMNS -1);
   v_margin = vertical_gap / (GRID_ROWS - 1);
 
-  for (var r = 0; r < legendas.getRowCount(); r++)
+  for (var i = 0; i < legendas.getRowCount(); i++)
   {
-    for (var c = 0; c < legendas.getRowCount(); c++)
+    for (var j = 0; j < legendas.getRowCount(); j++)
     {
-      if (legendas.getString(r, 0) < legendas.getString(c, 0))
+      if (legendas.getString(i, 0) < legendas.getString(j, 0))
       {
-        let temp = legendas.getString(r, 0);
-        legendas.setString(r, 0, legendas.getString(c, 0));
-        legendas.setString(c, 0, temp);
+        let temp = legendas.getString(i, 0);
+        legendas.setString(i, 0, legendas.getString(j, 0));
+        legendas.setString(j, 0, temp);
 
         // Não troca a ordem dos IDs para não afetar a ordem dos targets
 
-        temp = legendas.getString(r, 2);
-        legendas.setString(r, 2, legendas.getString(c, 2));
-        legendas.setString(c, 2, temp);
+        temp = legendas.getString(i, 2);
+        legendas.setString(i, 2, legendas.getString(j, 2));
+        legendas.setString(j, 2, temp);
       }
     }
   }

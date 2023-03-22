@@ -35,8 +35,10 @@ class Target
       textFont("Arial", 20, BOLD);
       fill(color(255, 255, 0));
       textAlign(CENTER);
-      text(this.label[0], this.x, this.y - 25);
+      text(this.label[0], this.x, this.y - 20);
     }
+    textFont("Arial", 12);
+    fill(color(255, 255, 255));
   }
 
   getLabel()
