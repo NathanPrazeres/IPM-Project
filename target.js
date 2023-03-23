@@ -35,7 +35,7 @@ class Target
       textFont("Arial", 36);
       fill(color(255, 255, 0));
       textAlign(CENTER);
-      text(this.label[0], this.x-64, this.y + 8);
+      text(this.label[0], this.x - 64, this.y + 8);
     }
     textFont("Arial", 16);
     fill(color(255, 255, 255));
