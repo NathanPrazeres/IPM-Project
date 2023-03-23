@@ -33,14 +33,15 @@ class Target
     if (first)
     {
       textFont("Arial", 36);
-      fill(color(0, 255, 0));
+      fill(color(255, 255, 0));
       textAlign(CENTER);
-      text(this.label[0], this.x-60, this.y + 8);
+      text(this.label[0], this.x-64, this.y + 8);
     }
     textFont("Arial", 16);
     fill(color(255, 255, 255));
   }
 
+  // I made a getter for the label so I can access it in sketch.js in order to know when the first letter changes.
   getLabel()
   {
     return this.label;

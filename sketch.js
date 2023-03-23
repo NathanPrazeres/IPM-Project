@@ -43,8 +43,31 @@ function setup()
 {
   createCanvas(700, 500);    // window size in px before we go into fullScreen()
   frameRate(60);             // frame rate (DO NOT CHANGE!)
+  sortTable();               // sorts the table by the first column (i.e., the target labels)
   randomizeTrials();         // randomize the trial order at the start of execution
   drawUserIDScreen();        // draws the user start-up screen (student ID and display size)
+}
+
+// Sorts the table by the name, alphabetically
+function sortTable() {
+  for (var i = 0; i < legendas.getRowCount(); i++)
+  {
+    for (var j = 0; j < legendas.getRowCount(); j++)
+    {
+      if (legendas.getString(i, 0) < legendas.getString(j, 0))
+      {
+        let temp = legendas.getString(i, 0);
+        legendas.setString(i, 0, legendas.getString(j, 0));
+        legendas.setString(j, 0, temp);
+
+        // Doesn't swap the ids because it'll break the target order
+
+        temp = legendas.getString(i, 2);
+        legendas.setString(i, 2, legendas.getString(j, 2));
+        legendas.setString(j, 2, temp);
+      }
+    }
+  }
 }
 
 // Runs every frame and redraws the screen
@@ -223,25 +246,6 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
   h_margin = horizontal_gap / (GRID_COLUMNS -1);
   v_margin = vertical_gap / (GRID_ROWS - 1);
 
-  for (var i = 0; i < legendas.getRowCount(); i++)
-  {
-    for (var j = 0; j < legendas.getRowCount(); j++)
-    {
-      if (legendas.getString(i, 0) < legendas.getString(j, 0))
-      {
-        let temp = legendas.getString(i, 0);
-        legendas.setString(i, 0, legendas.getString(j, 0));
-        legendas.setString(j, 0, temp);
-
-        // Não troca a ordem dos IDs para não afetar a ordem dos targets
-
-        temp = legendas.getString(i, 2);
-        legendas.setString(i, 2, legendas.getString(j, 2));
-        legendas.setString(j, 2, temp);
-      }
-    }
-  }
-  
   // Set targets in a 8 x 10 grid
   for (var r = 0; r < GRID_ROWS; r++)
   {
@@ -254,8 +258,6 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       let legendas_index = c + GRID_COLUMNS * r;
       let target_label = legendas.getString(legendas_index, 0);
       let target_id = legendas.getNum(legendas_index, 1);   
-      
-      // console.log("https://www.google.com/search?q="+ target_label.replace(/\s/g, '+') + '+' + legendas.getString(legendas_index, 2).replace(/\s/g, '+') +"&tbm=isch");
       
       let target = new Target(target_x, target_y + 40, target_size, target_label, target_id);
       targets.push(target);
