@@ -24,9 +24,11 @@ class Target
     // Draw target
     fill(bg_color);                 
     circle(this.x, this.y, this.width);
+    fill(color(0, 0, 0));
+    circle(this.x, this.y, this.width - 12);
     
     // Draw label
-    textFont("Arial", 16);
+    textFont("Arial", 12);
     fill(color(255,255,255));
     textAlign(CENTER);
     text(this.label, this.x, this.y);
