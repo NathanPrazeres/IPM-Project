@@ -87,6 +87,7 @@ function draw()
     let change = 0;
     let curr_letter = 'a';
     let first = true;
+    let last = false;
 
     // Draw all targets
 	  for (var i = 0; i < legendas.getRowCount(); i++) {
@@ -94,6 +95,13 @@ function draw()
         curr_letter = targets[i].getLabel()[0];
         change++;
         first = true;
+      }
+
+      if (i == legendas.getRowCount() - 1) {
+        last = true;
+      }
+      else if (targets[i].getLabel()[0] != targets[i+1].getLabel()[0]) {
+        last = true;
       }
 
       let bg_color;
@@ -111,8 +119,9 @@ function draw()
         bg_color = color(0, 100, 100);
       }
 
-      targets[i].draw(bg_color, first);
+      targets[i].draw(bg_color, first, last);
       first = false;
+      last = false;
     }
     
     // Draw the target label to be selected in the current trial
