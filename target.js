@@ -44,15 +44,17 @@ class Target
 
       noFill();
       stroke(255);
-      // make a quarter circle at the top of the target
+      // quarter circle at the top of the target
       arc(this.x - this.width/2, this.y - this.width/4, this.width/2, this.width/2, PI, PI * 3/2);
-      // make a quarter circle at the bottom of the target
+      // quarter circle at the bottom of the target
       arc(this.x - this.width/2, this.y + this.width/4, this.width/2, this.width/2, PI / 2, PI);
       if (last) {
+        // lines to connect the four quarter circles in the case of a single target
         line(this.x - this.width/2, this.y - this.width/2, this.x + this.width/2 - 20, this.y - this.width/2);
         line(this.x - this.width/2, this.y + this.width/2, this.x + this.width/2 - 20, this.y + this.width/2);
       }
       else {
+        // lines to connect the two quarter circles to the next target
         line(this.x - this.width/2, this.y - this.width/2, this.x + this.width/2 + 28, this.y - this.width/2);
         line(this.x - this.width/2, this.y + this.width/2, this.x + this.width/2 + 28, this.y + this.width/2);
       }
@@ -61,14 +63,16 @@ class Target
     {
       noFill();
       stroke(255);
-      // make a quarter circle at the top of the target
+      // quarter circle at the top of the target
       arc(this.x + this.width/4, this.y + this.width/4, this.width/2, this.width/2, 0, PI / 2);
-      // make a quarter circle at the bottom of the target
+      // quarter circle at the bottom of the target
       arc(this.x + this.width/4, this.y - this.width/4, this.width/2, this.width/2, PI * 3/2, 0);
 
       textAlign(CENTER);
+      // line connecting the two quarter circles
       line(this.x + this.width/2, this.y - this.width/4, this.x + this.width/2, this.y + this.width/4);
       if (!first) {
+        // lines above and below the target to connect it to the previous target
         line(this.x - this.width/2 - 32, this.y - this.width/2, this.x + this.width/2 - 20, this.y - this.width/2);
         line(this.x - this.width/2 - 32, this.y + this.width/2, this.x + this.width/2 - 20, this.y + this.width/2);
       }
@@ -76,12 +80,13 @@ class Target
     if (!first && !last) {
       noFill();
       stroke(255);
+
+      // lines to connect to both the next and previous targets
       line(this.x - this.width + 12, this.y - this.width/2, this.x + this.width - 20, this.y - this.width/2);
       line(this.x - this.width + 12, this.y + this.width/2, this.x + this.width - 20, this.y + this.width/2);
     }
-
-
     noStroke();
+
     textFont("Arial", 16);
     fill(color(255, 255, 255));
   }
