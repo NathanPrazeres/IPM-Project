@@ -56,12 +56,14 @@ function sortTable() {
     {
       if (legendas.getString(i, 0) < legendas.getString(j, 0))
       {
+        // Swaps the labels
         let temp = legendas.getString(i, 0);
         legendas.setString(i, 0, legendas.getString(j, 0));
         legendas.setString(j, 0, temp);
 
         // Doesn't swap the ids because it'll break the target order
 
+        // Swaps the categories (completely unnecessary)
         temp = legendas.getString(i, 2);
         legendas.setString(i, 2, legendas.getString(j, 2));
         legendas.setString(j, 2, temp);
