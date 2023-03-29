@@ -43,7 +43,7 @@ function setup()
 {
   createCanvas(700, 500);    // window size in px before we go into fullScreen()
   frameRate(60);             // frame rate (DO NOT CHANGE!)
-  sortTable();               // sorts the table by the first column (i.e., the target labels)
+  sortTable();               // sorts the table by the first column (by target labels)
   randomizeTrials();         // randomize the trial order at the start of execution
   drawUserIDScreen();        // draws the user start-up screen (student ID and display size)
 }
@@ -76,7 +76,7 @@ function draw()
   if (draw_targets && attempt < 2)
   {     
     // The user is interacting with the 6x3 target grid
-    background(color(0,0,0));        // sets background to black
+    background(color(0, 0, 0));        // sets background to black
     
     // Print trial count at the top left-corner of the canvas
     textFont("Arial", 16);
